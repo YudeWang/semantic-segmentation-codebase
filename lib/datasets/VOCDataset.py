@@ -34,10 +34,6 @@ class VOCDataset(BaseDataset):
 			self.pseudo_gt_dir = cfg.DATA_PSEUDO_GT
 		else:
 			self.pseudo_gt_dir = os.path.join(self.root_dir,'pseudo_gt',self.dataset_name,'Segmentation')
-		if cfg.DATA_FEATURE_DIR:
-			self.feature_dir = cfg.DATA_FEATURE_DIR
-		else:
-			self.feature_dir = os.path.join(self.root_dir,'feature',self.dataset_name,'Feature')
 
 		file_name = None
 		if cfg.DATA_AUG and 'train' in self.period:
@@ -81,12 +77,6 @@ class VOCDataset(BaseDataset):
 		segmentation = np.array(Image.open(seg_file))
 		return segmentation
 
-	def load_feature(self, idx):
-		name = self.name_list[idx]
-		feature_file = self.feature_dir + '/' + name + '.npy'
-		feature = np.load(feature_file)
-		return feature
-		
 	def __colormap(self, N):
 		"""Get the map from label index to color
 
@@ -161,22 +151,6 @@ class VOCDataset(BaseDataset):
 		for sample in result_list:
 			file_path = os.path.join(folder_path, '%s.png'%(sample['name']))
 			cv2.imwrite(file_path, sample['predict'])
-			i+=1
-
-	def save_feature(self, result_list, level=None):
-		"""Save feature map & CAM
-
-		Args:
-			result_list(list of dict): [{'name':name1, 'predict':feature},{...},...]
-
-		"""
-		i = 1
-		folder_path = self.feature_dir
-		if not os.path.exists(folder_path):
-			os.makedirs(folder_path)
-		for sample in result_list:
-			file_path = os.path.join(folder_path, '%s.npy'%(sample['name']))
-			np.save(file_path, sample['predict'])
 			i+=1
 
 	def do_matlab_eval(self, model_id):

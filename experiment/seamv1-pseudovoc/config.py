@@ -53,6 +53,6 @@ config_dict['ROOT_DIR'] = os.path.abspath(os.path.join(os.path.dirname("__file__
 config_dict['MODEL_SAVE_DIR'] = os.path.join(config_dict['ROOT_DIR'],'model',config_dict['EXP_NAME'])
 config_dict['TRAIN_CKPT'] = None
 config_dict['LOG_DIR'] = os.path.join(config_dict['ROOT_DIR'],'log',config_dict['EXP_NAME'])
-config_dict['TEST_CKPT'] = os.path.join(config_dict['ROOT_DIR'],'model/seamv1-pseudovoc/deeplabv1_resnet38_VOCDataset_itr20000_sub0_all_64.754.pth')
+config_dict['TEST_CKPT'] = os.path.join(config_dict['ROOT_DIR'],'model/seamv1-pseudovoc/deeplabv1_resnet38_VOCDataset_itr20000_all_64.754.pth')
 
 sys.path.insert(0, os.path.join(config_dict['ROOT_DIR'], 'lib'))

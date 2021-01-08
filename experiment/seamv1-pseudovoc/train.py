@@ -82,7 +82,6 @@ def train_net():
 	max_itr = cfg.TRAIN_ITERATION
 	max_epoch = max_itr*(cfg.TRAIN_BATCHES)//len(dataset)+1
 	tblogger = SummaryWriter(cfg.LOG_DIR)
-	timer = Timer("Session started: ")
 	criterion = nn.CrossEntropyLoss(ignore_index=255)
 	with tqdm(total=max_itr) as pbar:
 		for epoch in range(cfg.TRAIN_MINEPOCH, max_epoch):
