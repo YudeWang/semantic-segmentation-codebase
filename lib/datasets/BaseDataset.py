@@ -70,9 +70,9 @@ class BaseDataset(Dataset):
 		sample['category'] = seg2cls(t,self.num_categories)
 		sample['category_copypaste'] = np.zeros(sample['category'].shape)
 
-		if self.transform == 'none' and self.cfg.DATA_FEATURE_DIR:
-			feature = self.load_feature(idx)
-			sample['feature'] = feature
+		#if self.transform == 'none' and self.cfg.DATA_FEATURE_DIR:
+		#	feature = self.load_feature(idx)
+		#	sample['feature'] = feature
 		return self.__transform__(sample)
 
 	def __transform__(self, sample):
